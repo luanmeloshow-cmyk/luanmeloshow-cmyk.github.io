@@ -1,16 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engenharia de Petróleo e Gás - UFAM (Clone)</title>
+    <style>
+        /* --- CSS (A Maquiagem do Site) --- */
+        
+        /* Reset básico para tirar margens padrão */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Variáveis de Cores (Mude aqui para alterar o site todo) */
+        :root {
+            --cor-fundo-escuro: #121212; /* Preto do fundo */
+            --cor-fundo-secao: #1e1e1e; /* Cinza escuro das seções */
+            --cor-laranja-destaque: #d35400; /* O laranja dos botões e bordas */
+            --cor-texto-branco: #ffffff;
+            --cor-texto-cinza: #cccccc;
+        }
+
+        body { background-color: var(--cor-fundo-escuro); color: var(--cor-texto-branco); }
+        a { text-decoration: none; color: var(--cor-texto-branco); transition: 0.3s; }
+        a:hover { color: var(--cor-laranja-destaque); }
+
+        /* --- Cabeçalho e Menu --- */
+        header {
+            position: absolute; /* Fica por cima da imagem */
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            background: rgba(0,0,0,0.5); /* Fundo transparente para ler o menu */
+        }
+
+        .logo { font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; }
+        /* Simulando o logo da UFAM com texto */
+        .logo span { color: var(--cor-laranja-destaque); margin-right: 10px; font-size: 2rem;} 
+
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a { font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        .menu-destaque { color: var(--cor-laranja-destaque) !important; border-bottom: 2px solid var(--cor-laranja-destaque); }
+
+        /* --- Seção Principal (Hero) com Imagem de Fundo --- */
+        .hero {
+            height: 90vh; /* 90% da altura da tela */
+            /* Imagem de fundo (Uma plataforma de petróleo gratuita do Unsplash) */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1575329934489-73733850e63b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10%; /* Alinhado a esquerda como na foto */
+        }
+
+        .hero h1 { font-size: 4rem; line-height: 1.1; text-transform: uppercase; max-width: 600px; }
+        .hero h1 span { color: var(--cor-laranja-destaque); } /* Se quiser destacar uma palavra */
+        .hero p { font-size: 1.5rem; margin: 20px 0; color: var(--cor-texto-cinza); }
+
+        .btn-laranja {
+            display: inline-block;
+            background-color: var(--cor-laranja-destaque);
+            color: var(--cor-texto-branco);
+            padding: 15px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-laranja:hover { background-color: #a04000; } /* Laranja mais escuro ao passar o mouse */
+
+        /* --- Seção Áreas de Atuação --- */
+        .areas-atuacao {
+            background-color: var(--cor-fundo-secao);
+            padding: 80px 10%;
+            text-align: center;
+        }
+        .areas-atuacao h2 { font-size: 2rem; margin-bottom: 50px; text-transform: uppercase; }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap; /* Para celular, os cards descem */
+        }
+
+        .card {
+            background-color: var(--cor-fundo-secao);
+            border: 2px solid var(--cor-laranja-destaque);
+            border-radius: 10px;
+            padding: 40px 20px;
+            width: 300px;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(211, 84, 0, 0.2); }
+
+        .icon-box {
+            font-size: 3rem;
+            color: var(--cor-laranja-destaque);
+            margin-bottom: 20px;
+            /* Usando emojis ou simbolos de texto para simular ícones sem precisar de imagens externas */
+        }
+        .card h3 { font-size: 1.2rem; }
+
+        /* --- Rodapé --- */
+        footer {
+            background-color: var(--cor-laranja-destaque);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+        footer .footer-links a { margin-right: 20px; }
+
+        /* --- Responsivo (Para celular) --- */
+        @media (max-width: 768px) {
+            header { padding: 20px; flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero { padding-left: 5%; align-items: center; text-align: center; }
+            footer { flex-direction: column; text-align: center; gap: 15px; }
+        }
+    </style>
 </head>
-<body style="background-color: #f0f0f0; text-align: center; font-family: Arial;">
-    
-    <div style="background: white; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-        <h1 style="color: #0070f3;">Olá, este é meu site! 🚀</h1>
-        <p>Eu criei isso do zero sem saber programar.</p>
-        <p>Sou estudante e estou aprendendo tecnologia.</p>
-    </div>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>⚙️</span> UFAM (Clone)
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="menu-destaque">O CURSO</a></li>
+                <li><a href="#">CORPO DOCENTE</a></li>
+                <li><a href="#">PESQUISA</a></li>
+                <li><a href="#">CONTATO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <h1>ENGENHARIA DE<br>PETRÓLEO E GÁS</h1>
+        <p>Universidade Federal do Amazonas</p>
+        <a href="#" class="btn-laranja">GRADE CURRICULAR</a>
+    </main>
+
+    <section class="areas-atuacao">
+        <h2>ÁREAS DE ATUAÇÃO</h2>
+        
+        <div class="cards-container">
+            <div class="card">
+                <div class="icon-box">⛏️</div> <h3>Exploração e Produção</h3>
+            </div>
+            <div class="card">
+                <div class="icon-box">🔥</div> <h3>Refino e Processamento</h3>
+            </div>
+            <div class="card">
+                <div class="icon-box">🚢</div> <h3>Logística e Transporte</h3>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">O Curso</a>
+            <a href="#">Corpo Docente</a>
+            <a href="#">Pesquisa</a>
+            <a href="#">Contato</a>
+        </div>
+        <div>
+           <p>Copyright 2025 UFAM (Clone para estudo)</p>
+        </div>
+    </footer>
 
 </body>
 </html>
